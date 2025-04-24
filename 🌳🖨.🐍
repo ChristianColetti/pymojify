@@ -1,0 +1,47 @@
+import os as 🧱
+import fnmatch as 🎯
+
+def 🧾🐙(📁):
+    🧵 = set()
+    📄 = 🧱.path.join(📁, ".gitignore")
+    if not 🧱.path.exists(📄):
+        return 🧵
+
+    with open(📄,"r") as 📜:
+        for 📏 in 📜:
+            📏 = 📏.strip()
+            if not 📏 or 📏.startswith("#"):
+                continue
+            🧵.add(📏.lstrip("/"))
+    🧵.update({".git", ".git/", ".git/*", ".idea", ".gitignore", "__pycache__", "output", "🌳🖨.🐍", "README.md"})
+    return 🧵
+
+def 🙅(🛣,🧵):
+    📐 = 🛣.replace("\\", "/")
+    for 💹 in 🧵:
+        if 🎯.fnmatch(📐, 💹) or 🎯.fnmatch(🧱.path.basename(📐), 💹):
+            return True
+    return False
+
+
+def 🌳🖨(🌎,📎="",🧵=None):
+    if 🧵 is None:
+        🧵 = set()
+
+    📦 = sorted(🧱.listdir(🌎))
+    for 🔢, 🎟️ in enumerate(📦):
+        📂 = 🧱.path.join(🌎, 🎟️)
+        🦮 = 🧱.path.relpath(📂, 🌎).replace("\\", 🧱.sep)
+
+        if 🙅(🦮, 🧵):
+            continue
+
+        🔌 = "└── " if 🔢 == len(📦) - 1 else "├── "
+        print(f"{📎}{🔌}{🎟️}")
+        if 🧱.path.isdir(📂):
+            ➕ = "    " if 🔢 == len(📦) - 1 else "│   "
+            🌳🖨(📂, 📎 + ➕, 🧵)
+
+🧭 = 🧱.path.abspath(".")
+🧵 = 🧾🐙(🧭)
+🌳🖨(🧭, 🧵=🧵)
