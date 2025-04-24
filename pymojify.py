@@ -12,7 +12,7 @@ class EmojiReplacer:
     def get_identifier(self, emoji):
         """Get a consistent identifier for an emoji"""
         if emoji not in self.emoji_map:
-            identifier = f"__pythonji_{self.next_id}__"
+            identifier = f"__pymojify_{self.next_id}__"
             self.emoji_map[emoji] = identifier
             self.reverse_map[identifier] = emoji
             self.next_id += 1
@@ -36,8 +36,8 @@ class EmojiReplacer:
         return ''.join(result)
 
 
-def run_pythonji_file(file_path, debug=False):
-    """Run a pythonji file"""
+def run_pymojify_file(file_path, debug=False):
+    """Run a pymojify file"""
     with open(file_path, 'r', encoding='utf-8') as f:
         source_code = f.read()
 
@@ -87,11 +87,13 @@ def main():
 
 
     args = parser.parse_args()
+    print(args)
 
     if not args.file or not args.file.endswith(".🐍"):
         parser.error("The input file must have a .🐍 extension.")
 
-    run_pythonji_file(args.file, debug=args.debug)
+    debug = getattr(args, 'de🐛')
+    run_pymojify_file(args.file, debug=debug)
 
 
 if __name__ == "__main__":
