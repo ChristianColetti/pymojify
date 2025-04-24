@@ -83,7 +83,8 @@ def main():
         epilog="Example: python pymojify.py 🌳🖨.🐍 --debug"
     )
     parser.add_argument("file", help="Path to your .🐍 pymojified file")
-    parser.add_argument("--debug", action="store_true", help="Write the processed .py file for debug")
+    parser.add_argument("--de🐛", action="store_true", help="Write the processed .py file for de🐛")
+
 
     args = parser.parse_args()
 
